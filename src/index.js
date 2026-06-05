@@ -4,6 +4,7 @@ const path = require('path');
 const morgan = require('morgan');
 const passport = require('passport');
 const session = require('express-session')
+require('dotenv').config();
 
 //  Initialize
 const app = express();
@@ -21,7 +22,7 @@ app.set('port' , process.env.PORT || 3000);
 //  Middlewares
 app.use(morgan('dev'))
 app.use(session({
-    secret : 'randomSecret',
+    secret : process.env.SESSION_SECRET || 'change-me',
     resave : false,
     saveUninitialized : false
 }))
